@@ -1,0 +1,169 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Projekt </title>
+<script>
+<!--
+    function thisYear() {
+        var idag = new Date();
+        return parseInt(idag.getFullYear());
+    }
+    /*Namn består av bokstäver. Födelseår/bortgång består av 4 siffror eller tom och de kan inte 
+    vara större än årtalet för iår. Land består av bokstäver eller tom.*/
+    function checkActor() {
+        var str = /[a-zA-Z]+$/;
+        var year = /\d{4}/;
+        var name = document.form.nameactor.value;
+        var birthYear = document.form.birth.value;
+        var deathYear = document.form.dead.value;
+        var country = document.form.country.value;
+        if (str.test(name) != 1) {
+            alert('Fel inmatning namn');
+            return false;
+        }
+        if (birthYear != "" && (year.test(birthYear) != 1 || parseInt(birthYear) > thisYear())) {
+            alert('Fel inmatning födelseår');
+            return false;
+        }
+        if (country != "" && str.test(country) != 1) {
+            alert('Fel inmatning land');
+            return false;
+        }
+        if (deathYear != "" && (year.test(deathYear) != 1 || parseInt(deathYear) > thisYear())) {
+            alert('Fel inmatning bortgång');
+            return false;
+        }
+        /*om man har angett födelseår, men inte dödsår, betyder det att hen lever, därför 0000*/
+        if (birthYear != "" && deathYear == "") {
+            deathYear = '0000';
+        }
+    }
+    /*film-namn består of bokstäver/siffror. Release år kan inte vara större än iår.*/
+    function checkFilm() {
+        var str = /\w+$/;
+        var year = /\d{4}/;
+        var name = document.form.namefilm.value;
+        var releaseYear = document.form.releasefilm.value;
+        if (str.test(name) != 1) {
+            alert('Fel inmatning filmnamn');
+            return false;
+        }
+        if (releaseYear != "" && (year.test(releaseYear) != 1 || parseInt(releaseYear) > thisYear())) {
+            alert('Fel inmatning utgivningsår');
+            return false;
+        }
+    }
+    /*TVserie-namn består of bokstäver/siffror. Releaseår och slutår kan inte vara större än iår.*/
+    function checkTvShow() {
+        var str = /\w+$/;
+        var year = /\d{4}/;
+        var name = document.form.nametvshow.value;
+        var releaseYear = document.form.releasetvshow.value;
+        var endYear = document.form.endtvshow.value;
+        if (str.test(name) != 1) {
+            alert('Fel inmatning TV-serie namn');
+            return false;
+        }
+        if (releaseYear != "" && (year.test(releaseYear) != 1 || parseInt(releaseYear) > thisYear())) {
+            alert('Fel inmatning utgivningsår');
+            return false;
+        }
+        if (endYear != "" && (year.test(endYear) != 1 || parseInt(endYear) > thisYear())) {
+            alert('Fel inmatning utgivningsår');
+            return false;
+        }
+    }
+-->
+</script>
+<noscript>
+    Din webläsare kan inte hantera script
+</noscript>
+</head>
+<body>
+<h3 style="color:purple"> Lägg till skådespelare </h3>
+	<form name="form" action="addActorFilmTVShow.php" method="POST">
+    <table>
+    	<tr>
+            <td>Namn</td>
+            <td> <input type="text" name="nameactor" maxlength="255"> </td>
+        </tr>
+        <tr>
+            <td> Födelseår </td>
+            <td><input type="text" name="birth" maxlength="4"></td>
+        </tr>
+        <tr>
+            <td> Bortgång</td>
+            <td><input type="text" name="dead" maxlength="4"> </td>
+        </tr>
+        <tr>
+            <td> Födelseland</td>
+            <td><input type="text" name="country" maxlength="255"> </td>
+        </tr>
+        <tr>
+            <td> Kön</td>
+            <td>
+                <select name="sex">
+                    <option value="">Select...</option>
+                    <option value="man">Man</option>
+                    <option value="kvinna">Kvinna</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td> Film</td>
+            <td>
+            <select name="sex">
+                    <option value="">Select...</option>
+                    <option value="man">Man</option>
+                    <option value="kvinna">Kvinna</option>
+            </td>
+            </select>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td><input type="submit" value="Lägg till" name="submitActor" onClick="return checkActor();"></td>
+            <td> <input type="Submit" value="Rensa"></td>
+        </tr>
+    </table> 
+    <br>
+<h3 style="color:blue"> Lägg till film </h3>
+    <table>
+    	<tr>
+            <td>Namn</td>
+            <td> <input type="text" name="namefilm" maxlength="255"> </td>
+        </tr>
+        <tr>
+            <td> Utgivningsår </td>
+            <td><input type="text" name="releasefilm" maxlength="4"></td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td> <input type="submit" value="Lägg till" name="submitFilm" onClick="return checkFilm();"></td>
+            <td> <input type="Submit" value="Rensa"></td>
+        </tr>
+    </table> 
+    <br>
+<h3 style="color:purple"> Lägg till tv serie </h3>
+    <table>
+    	<tr>
+            <td>Namn</td>
+            <td> <input type="text" name="nametvshow" maxlength="255"> </td>
+        </tr>
+        <tr>
+            <td> Utgivningsår </td>
+            <td><input type="text" name="releasetvshow" maxlength="4"></td>
+        </tr>
+        <tr>
+            <td> Sista år </td>
+            <td><input type="text" name="endtvshow" maxlength="4"></td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td> <input type="submit" value="Lägg till" name="submitTvshow" onClick="return checkTvShow();"></td>
+            <td> <input type="Submit" value="Rensa"></td>
+        </tr>
+    </table> 
+    </form>
+</body>
+</html>
