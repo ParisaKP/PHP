@@ -1,5 +1,4 @@
 # PHP
-En uppgift där man skapar en databas över skådespelare och filmer.
-Uppgiften är sista projektet på databasbaserad publicering, en kurs på Malmö högskolan.
-Alla som registrera sig med ett email kan söka i databasen, men bara admin som finns i adminlistan kan lägga till nya record.
-man behöver ha filerna på en webserver för att php ska funka.
+A database of movies and movie stars. This is the last project in "databasbaserad publicering", a course in Malmö University.
+Every one may register by an email and search in the database, but only admin (there is an admin list) can add new records.
+In order for this to work the files should be located on the web server, since PHP files first need to be processed in a web server before sending their output to the web browser.
